@@ -1,9 +1,13 @@
 import mongoose, { Schema } from 'mongoose';
 
-const MODEL_NAME = 'App';
+const MODEL_NAME = 'User';
 
 const schema = new Schema({
-  name: String
+  name: String,
+  email: String,
+  image: String,
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 const Model = mongoose.models[MODEL_NAME] || mongoose.model(MODEL_NAME, schema);

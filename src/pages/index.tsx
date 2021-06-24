@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import FullScreenDialog from '../components/FullScreenDialog';
 import CreateInterval from './index/CreateInterval'
 
 export default function Home() {
@@ -27,9 +26,7 @@ export default function Home() {
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           Add new one interval
         </Button>
-        <FullScreenDialog title="Add new interval" open={open} handleClose={handleClose}>
-          <CreateInterval />
-        </FullScreenDialog>
+        <CreateInterval open={open} handleClose={handleClose} />
       </main>
     </Container>
   )

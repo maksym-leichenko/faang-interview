@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { createHandler } from '@/middleware';
-import App from '@/models/app';
+import User from '@/models/user';
 
 const handler = createHandler();
 
@@ -12,7 +12,7 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   // });
   // await doc.save();
   // // Do something with App
-  const apps = await App.find().exec();
+  const apps = await User.find().exec();
 
   res.json(apps);
 
