@@ -4,12 +4,12 @@ import { useSession, signIn, signOut } from 'next-auth/client';
 
 function SignInScreen() {
   const [session, loading] = useSession();
-  const handleSignin = (event) => {
+  const handleSignin = (event: { preventDefault: () => void; }) => {
     event.preventDefault()
     signIn()
   }
 
-  const handleSignout = (event) => {
+  const handleSignout = (event: { preventDefault: () => void; }) => {
     event.preventDefault()
     signOut()
   }

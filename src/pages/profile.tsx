@@ -1,10 +1,17 @@
-import React from 'react'
-import Head from 'next/head'
+import React, { useEffect } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 // @ts-ignore
 import TelegramLoginButton from 'react-telegram-login';
+import { useSession, signOut, signIn } from 'next-auth/client';
 
 export default function Home() {
+  const [session, loading] = useSession();
+  const router = useRouter();
+
   const handleTelegramResponse = (response: Object) => {
     console.log(response);
   };
@@ -17,8 +24,16 @@ export default function Home() {
       </Head>
 
       <main>
-        hello
-        <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="FaangInfoBot" />
+        <Container>
+          <Typography gutterBottom variant="h5" component="h2">
+            {session?.user?.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {session?.user?.email}
+          </Typography>
+          <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="FaangInfoBot" />
+
+        </Container>
       </main>
     </Container>
   )
