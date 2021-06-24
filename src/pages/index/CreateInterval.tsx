@@ -17,6 +17,8 @@ import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Form } from 'react-final-form';
 import { TextField, Checkboxes, Radios, DatePicker, TimePicker } from 'mui-rff';
+import { IIntervalData } from '@/types/interval';
+import api from '@/api';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,20 +44,14 @@ type ICreateIntervalProps = {
   handleClose: () => void,
 }
 
-interface IIntervalData {
-  mocksCount: number;
-  dateFrom: string;
-  dateTo: string;
-  isPublic: string;
-  mockTypes: string[];
-}
+
 
 export default function CreateInterval({ open, handleClose }: ICreateIntervalProps) {
   const classes = useStyles();
 
   const onSubmit = async (values: IIntervalData) => {
-    // @ts-ignore
-    window.alert(JSON.stringify(values, 0, 2));
+    const res = await api.interval.create(values);
+    console.log(res);
   };
 
   const validate = (values: IIntervalData) => {
