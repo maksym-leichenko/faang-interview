@@ -1,27 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getSession } from "next-auth/client";
 
 import { createHandler } from '@/middleware';
-import User from '@/models/user';
+import authGuard from '@/middleware/authGuard';
+// import User from '@/models/user';
 
-const handler = createHandler();
+const handler = createHandler([authGuard]);
 
-handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getSession({ req });
 
-  if (req.method === 'POST') {
-    res.json(req.body);
-  } else {
-    // Handle any other HTTP method
-  }
-
-  // const doc = new App({
-  //   name: 'Bill',
-  // });
-  // await doc.save();
-  // // Do something with App
-  const apps = await User.find().exec();
-
-  res.json(apps);
-
+  // const apps = await User.find().exec();
+  res.json(session);
 });
 
 export default handler;

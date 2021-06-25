@@ -1,21 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/client";
 
-import { createHandler } from '@/middleware';
-import User from '@/models/user';
-
-const handler = createHandler();
-
-handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
-
-  // const doc = new App({
-  //   name: 'Bill',
-  // });
-  // await doc.save();
-  // // Do something with App
-  const apps = await User.find().exec();
-
-  res.json(apps);
-
-});
-
-export default handler;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getSession({ req });
+  if (session === null) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  res.status(200).json(session);
+};
