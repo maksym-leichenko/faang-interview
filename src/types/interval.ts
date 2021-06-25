@@ -4,5 +4,6 @@ export interface IIntervalData {
   dateFrom: string;
   dateTo: string;
   isPublic: string;
-  mockTypes: TMockType[];
+  mockTypes: number[];
+  notes: string;
 }

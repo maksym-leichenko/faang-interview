@@ -47,6 +47,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  itervals      Interval[]
 }
 
 model VerificationRequest {
@@ -61,20 +62,22 @@ model VerificationRequest {
 }
 
 model Interval {
-  id            String    @id @default(cuid())
+  id            Int    @id @default(autoincrement())
+  userId        String
   dateFrom      DateTime
   dateTo        DateTime
   mocksCount    Int
   isPublic      String
   mockTypes     MockType[]
   notes         String
+  user          User      @relation(fields: [userId], references: [id])
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
 
 model MockType {
   id    Int     @id @default(autoincrement())
-  type  String
+  type  String  @unique
   title String
-  itervals Interval[]  @relation(references: [id])
+  itervals Interval[]
 }

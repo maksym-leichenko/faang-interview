@@ -75,7 +75,7 @@ export default function CreateInterval({ open, handleClose }: ICreateIntervalPro
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
       <Form
         onSubmit={onSubmit}
-        initialValues={{ isPublic: "yes", mocksCount: 1, mockTypes: ['algo'] }}
+        initialValues={{ isPublic: "yes", mocksCount: 1, mockTypes: [1], dateFrom: new Date(), dateTo: new Date(),  }}
         validate={validate}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
@@ -148,11 +148,11 @@ export default function CreateInterval({ open, handleClose }: ICreateIntervalPro
                     name="mockTypes"
                     formControlProps={{ margin: 'none' }}
                     data={[
-                      { label: 'Algo mocks', value: 'algo' },
-                      { label: 'Syctem design mocks', value: 'sd' },
-                      { label: 'Syctem design mocks (Front-end)', value: 'sdFront' },
-                      { label: 'Syctem design mocks (Mobile)', value: 'sdMobile' },
-                      { label: 'Front-end tasks', value: 'front' },
+                      { label: 'Algo mocks', value: 1 },
+                      { label: 'Syctem design mocks', value: 2 },
+                      { label: 'Syctem design mocks (Front-end)', value: 3 },
+                      { label: 'Syctem design mocks (Mobile)', value: 4 },
+                      { label: 'Front-end tasks', value: 5 },
                     ]}
                   />
                   <FormHelperText>Select minimum one type</FormHelperText>
