@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: faang
+      POSTGRES_USER: faang
+      POSTGRES_PASSWORD: faang
+    ports:
+      - 127.0.0.1:5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
