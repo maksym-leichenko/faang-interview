@@ -6,7 +6,8 @@
     "dev": "sudo next dev -p 80",
     "build": "next build",
     "start": "next start",
-    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
+    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
+    "prisma:seed": "prisma db seed --preview-feature"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
