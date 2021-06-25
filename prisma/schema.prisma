@@ -67,6 +67,7 @@ model Interval {
   mocksCount    Int
   isPublic      String
   mockTypes     MockType[]
+  notes         String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
