@@ -3,15 +3,15 @@ import { getSession } from "next-auth/client";
 
 import { createHandler } from '@/middleware';
 import authGuard from '@/middleware/authGuard';
-// import User from '@/models/user';
+import prisma from '@/prisma';
 
 const handler = createHandler([authGuard]);
 
 handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  // const session = await getSession({ req });
+  const user = await prisma.user.findFirst();
 
-  // const apps = await User.find().exec();
-  res.json(session);
+  res.json(user);
 });
 
 export default handler;

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "sudo next dev -p 80",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
@@ -14,6 +15,7 @@
     "@material-ui/pickers": "^3.3.10",
     "@next-auth/prisma-adapter": "^0.4.4-canary.64",
     "@prisma/client": "^2.25.0",
+    "@types/node": "^15.12.4",
     "babel-plugin-styled-components": "^1.12.0",
     "date-fns": "^2.21.3",
     "final-form": "^4.20.2",
@@ -26,7 +28,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-final-form": "^6.5.3",
-    "react-telegram-login": "^1.1.2"
+    "react-telegram-login": "^1.1.2",
+    "ts-node": "^10.0.0"
   },
   "devDependencies": {
     "@types/react": "17.0.6",

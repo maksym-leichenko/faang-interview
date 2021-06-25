@@ -59,3 +59,21 @@ model VerificationRequest {
 
   @@unique([identifier, token])
 }
+
+model Interval {
+  id            String    @id @default(cuid())
+  dateFrom      DateTime
+  dateTo        DateTime
+  mocksCount    Int
+  isPublic      String
+  mockTypes     MockType[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model MockType {
+  id    Int     @id @default(autoincrement())
+  type  String
+  title String
+  itervals Interval[]  @relation(references: [id])
+}
