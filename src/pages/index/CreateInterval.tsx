@@ -75,21 +75,22 @@ export default function CreateInterval({ open, handleClose }: ICreateIntervalPro
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
       <Form
         onSubmit={onSubmit}
-        initialValues={{ isPublic: "yes", mocksCount: 1, mockTypes: [1], dateFrom: new Date(), dateTo: new Date(),  }}
+        initialValues={{ isPublic: "yes", mocksCount: 1, mockTypes: [1], dateFrom: new Date(), dateTo: new Date(), }}
         validate={validate}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
             <AppBar className={classes.appBar}>
               <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                  <CloseIcon />
-                </IconButton>
                 <Typography variant="h6" className={classes.title}>
                   Create new interval
                 </Typography>
+
+                <IconButton color="inherit" onClick={handleClose} aria-label="close">
+                  <CloseIcon />
+                </IconButton>
                 <Button
                   autoFocus
-                  color="inherit"
+                  variant="contained"
                   type="submit"
                   disabled={submitting}>
                   save

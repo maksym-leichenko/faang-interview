@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import CreateInterval from '@/pages/index/CreateInterval';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [session, loading] = useSession();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -49,6 +51,15 @@ export default function PrimarySearchAppBar() {
     event.preventDefault()
     signIn()
   }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -63,15 +74,19 @@ export default function PrimarySearchAppBar() {
           <Typography variant="h6" noWrap className={classes.title}>
             <Link href="/">FAANG Mock Interview Schedule</Link>
           </Typography>
+          <Button variant="contained" onClick={handleClickOpen}>
+            Schedule mock interview
+          </Button>
+          <CreateInterval open={open} handleClose={handleClose} />
           {session && session.user && (
             <>
               <IconButton
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
               >
 
                 {session.user.image && <Avatar alt="Remy Sharp" src={session.user.image} />}
