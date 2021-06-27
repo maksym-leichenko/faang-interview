@@ -52,6 +52,7 @@ export default function CreateInterval({ open, handleClose }: ICreateIntervalPro
   const onSubmit = async (values: IIntervalData) => {
     const res = await api.interval.create(values);
     console.log(res);
+    handleClose();
   };
 
   const validate = (values: IIntervalData) => {
