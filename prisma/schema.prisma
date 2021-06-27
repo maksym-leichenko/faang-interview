@@ -38,16 +38,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  sessions      Session[]
-  itervals      Interval[]
+  id             String     @id @default(cuid())
+  name           String?
+  email          String?    @unique
+  emailVerified  DateTime?
+  image          String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  accounts       Account[]
+  sessions       Session[]
+  itervals       Interval[]
+  primaryMocks   Mock[]     @relation("PrimaryMock")
+  secondaryMocks Mock[]     @relation("SecondaryMock")
 }
 
 model VerificationRequest {
@@ -62,23 +64,40 @@ model VerificationRequest {
 }
 
 model Interval {
-  id            Int    @id @default(autoincrement())
-  userId        String
-  dateFrom      DateTime
-  dateTo        DateTime
-  mocksCount    Int
-  isPublic      String
-  mockTypes     MockType[]
-  notes         String
-  user          User      @relation(fields: [userId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  deleteAt      DateTime?
+  id         Int        @id @default(autoincrement())
+  userId     String
+  dateFrom   DateTime
+  dateTo     DateTime
+  mocksCount Int
+  isPublic   String
+  mockTypes  MockType[]
+  notes      String
+  user       User       @relation(fields: [userId], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  deleteAt   DateTime?
 }
 
 model MockType {
-  id    Int     @id @default(autoincrement())
-  type  String  @unique
-  title String
+  id       Int        @id @default(autoincrement())
+  type     String     @unique
+  title    String
   itervals Interval[]
+  mocks    Mock[]
+}
+
+model Mock {
+  id                 Int      @id @default(autoincrement())
+  type               MockType @relation(fields: [typeId], references: [id])
+  typeId             Int
+  primary            User     @relation("PrimaryMock", fields: [primaryId], references: [id])
+  primaryId          String
+  secondary          User     @relation("SecondaryMock", fields: [primaryId], references: [id])
+  secondaryId        String
+  dateFrom           DateTime
+  dateTo             DateTime
+  primaryConfirmAt   DateTime
+  secondaryConfirmAt DateTime
+  primaryDeclineAt   DateTime
+  secondaryDeclineAt DateTime
 }

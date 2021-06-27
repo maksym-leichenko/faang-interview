@@ -21,9 +21,15 @@ interface IRow {
   id: number;
   dateFrom: string;
   dateTo: string;
+  isPublic: string;
   mocksCount: number;
   mockTypes: string;
   notes: string;
+}
+
+const dateOptions: { [key: string]: any } = {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
 }
 
 export default function MyIntervals() {
@@ -55,6 +61,7 @@ export default function MyIntervals() {
             <TableCell>From</TableCell>
             <TableCell align="right">To</TableCell>
             <TableCell align="right">Count mocks</TableCell>
+            <TableCell align="right">Can be Public</TableCell>
             <TableCell align="right">Types</TableCell>
             <TableCell align="right">Notes</TableCell>
             <TableCell align="right">Action</TableCell>
@@ -64,10 +71,13 @@ export default function MyIntervals() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell component="th" scope="row">
-                {row.dateFrom}
+                {new Date(row.dateFrom).toLocaleString('en-US', dateOptions)}
               </TableCell>
-              <TableCell align="right">{row.dateTo}</TableCell>
+              <TableCell align="right">
+                {new Date(row.dateTo).toLocaleString('en-US', dateOptions)}
+              </TableCell>
               <TableCell align="right">{row.mocksCount}</TableCell>
+              <TableCell align="right">{row.isPublic}</TableCell>
               <TableCell align="right">{row.mockTypes}</TableCell>
               <TableCell align="right">{row.notes}</TableCell>
               <TableCell align="right">

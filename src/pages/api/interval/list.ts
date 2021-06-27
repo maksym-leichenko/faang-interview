@@ -18,6 +18,9 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
     ],
     where: {
       deleteAt: null,
+      dateTo: {
+        gt: new Date(),
+      },
       user: {
         email: user.email
       },

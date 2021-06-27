@@ -75,7 +75,7 @@ export default function PrimarySearchAppBar() {
             <Link href="/">FAANG Mock Interview Schedule</Link>
           </Typography>
           <Button variant="contained" onClick={handleClickOpen}>
-            Schedule mock interview
+            Schedule
           </Button>
           <CreateInterval open={open} handleClose={handleClose} />
           {session && session.user && (
@@ -101,6 +101,7 @@ export default function PrimarySearchAppBar() {
                 onClose={handleMenuClose}
               >
                 <MenuItem onClick={handleMenuClose}><Link href="/profile">Profile</Link></MenuItem>
+                <MenuItem onClick={handleMenuClose}><Link href="/profile/intervals">Intervals</Link></MenuItem>
                 <MenuItem onClick={handleSignout}>Log out</MenuItem>
               </Menu>
             </>
